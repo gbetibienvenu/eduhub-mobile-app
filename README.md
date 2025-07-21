@@ -1,6 +1,6 @@
 # 🎓 EduHub – Learn. Grow. Thrive.
 
-EduHub is a **free, mobile-first learning platform** designed to deliver **bite-sized, high-impact micro-courses** 
+EduHub is now a **free, mobile-first learning platform** designed to deliver **bite-sized, high-impact micro-courses** 
 that equip youth with foundational skills in literacy, digital competency, and soft skills. Built with accessibility 
 and relevance in mind, EduHub empowers learners in low-resource settings to build their capacity for personal and professional growth.
 
