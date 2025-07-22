@@ -252,23 +252,76 @@ class CourseListScreen extends StatelessWidget {
   final String trackTitle;
   CourseListScreen({required this.trackTitle});
 
-  final List<String> mockCourses = [
-    'Intro to Basics',
-    'Everyday Vocabulary',
-    'Filling Forms',
-    'Simple Messages',
-  ];
+// This is code i updated 
+  // final List<String> mockCourses = [
+  //   'Intro to Basics',
+  //   'Everyday Vocabulary',
+  //   'Filling Forms',
+  //   'Simple Messages',
+  // ];
+
+// With this one below here 
+
+List<String> getCoursesForTrack(String track) {
+  switch (track) {
+    case 'Literacy':
+      return [
+        'Intro to Reading',
+        'Everyday Vocabulary',
+        'Filling Forms',
+        'Reading Signs',
+        'Story Time',
+        'Functional Writing',
+      ];
+    case 'Digital Skills':
+      return [
+        'Intro to Smartphones',
+        'Using the Internet',
+        'Social Media Basics',
+        'Digital Payments',
+        'Typing Practice',
+        'Cybersecurity Essentials',
+      ];
+    case 'Soft Skills':
+      return [
+        'Communication',
+        'Teamwork',
+        'Time Management',
+        'Problem Solving',
+        'Leadership Basics',
+        'Public Speaking',
+      ];
+    default:
+      return ['General Course'];
+  }
+}
+
+
 
   @override
   Widget build(BuildContext context) {
+    //This code has been added 
+     final courses = getCoursesForTrack(trackTitle);
+
     return Scaffold(
       appBar: AppBar(title: Text(trackTitle)),
       body: ListView.separated(
         padding: EdgeInsets.all(16),
-        itemCount: mockCourses.length,
+
+        // itemCount: mockCourses.length,
+
+        // An added features
+        itemCount: courses.length,
+
         separatorBuilder: (_, __) => SizedBox(height: 10),
         itemBuilder: (context, index) {
-          final title = mockCourses[index];
+
+          // final title = mockCourses[index];
+
+           // An added features
+          final title = courses[index];
+
+
           return ListTile(
             tileColor: Colors.white,
             shape:
@@ -289,12 +342,34 @@ class CourseListScreen extends StatelessWidget {
   }
 }
 
+
 class LessonViewerScreen extends StatelessWidget {
   final String title;
   LessonViewerScreen({required this.title});
 
   @override
+  
   Widget build(BuildContext context) {
+
+    // Added features below here 
+    
+      final Map<String, String> lessonContent = {
+    'Intro to Reading': 'Learn how to identify letters and pronounce words.',
+    'Filling Forms': 'This lesson teaches how to fill out basic forms like name, address, phone.',
+    'Typing Practice': 'Practice typing on a digital keyboard efficiently.',
+    'Communication': 'Discover how to express your ideas clearly and listen actively.',
+    'Reading Maps & Directions': 'Understand how to use and read maps for daily navigation.',
+    'Digital Payments': 'Learn how to use mobile money apps and stay safe.',
+    'Social Media Basics': 'Explore safe and useful ways to use Facebook, WhatsApp, and more.',
+    'Public Speaking': 'Build confidence and learn how to talk in front of others.',
+    'Empathy & Respect': 'Understand how to work well with others and show respect.',
+    'Teamwork': 'Learn the importance of working together to solve problems.',
+  };
+    String content = lessonContent[title] ?? 'Content for "$title" is coming soon.';
+
+
+// Old code still below here
+
     return Scaffold(
       appBar: AppBar(title: Text(title)),
       body: Padding(
@@ -305,8 +380,11 @@ class LessonViewerScreen extends StatelessWidget {
             Text('Lesson Content:',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(height: 12),
+            // Text('This is a short interactive lesson on "$title".',
+                // style: TextStyle(fontSize: 16)),
             Text('This is a short interactive lesson on "$title".',
-                style: TextStyle(fontSize: 16)),
+            style: TextStyle(fontSize: 16)),
+
             Spacer(),
             ElevatedButton(
               onPressed: () => Navigator.pop(context),
